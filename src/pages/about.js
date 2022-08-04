@@ -1,6 +1,5 @@
 import * as React from "react";
-import { Link } from "gatsby";
-import Layout from "../components/layot";
+import Layout from "../components/layout";
 
 const AboutPage = () => {
   return (
@@ -13,3 +12,7 @@ const AboutPage = () => {
 };
 
 export default AboutPage;
+
+// export const Head = () => (
+//   <link href="/dist/output.css" rel="stylesheet"></link>
+// );
