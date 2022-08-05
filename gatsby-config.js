@@ -16,5 +16,14 @@ module.exports = {
     "gatsby-transformer-sharp",
     "gatsby-plugin-postcss",
     `gatsby-plugin-netlify-cms`,
+    {
+      resolve: `gatsby-plugin-intl`,
+      options: {
+        path: `${__dirname}/src/intl`,
+        languages: [`uk`, `en`],
+        defaultLanguage: `uk`,
+        redirect: true,
+      },
+    },
   ],
 };

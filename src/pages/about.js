@@ -19,7 +19,10 @@ const AboutPage = () => {
           {...register("phone", { required: true })}
           className="w-full mb-1 border "
         />
-        <input type="submit" className="bg-indigo-500 rounded-md" />
+        <input
+          type="submit"
+          className="bg-indigo-500 rounded-md block mx-auto py-2 ps-14 w-32"
+        />
       </form>
     </Layout>
   );
