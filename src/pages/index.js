@@ -12,7 +12,3 @@ const IndexPage = () => {
 };
 
 export default IndexPage;
-
-// export const Head = () => (
-//   <link href="/dist/output.css" rel="stylesheet"></link>
-// );

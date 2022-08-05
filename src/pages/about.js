@@ -26,7 +26,3 @@ const AboutPage = () => {
 };
 
 export default AboutPage;
-
-// export const Head = () => (
-//   <link href="/dist/output.css" rel="stylesheet"></link>
-// );

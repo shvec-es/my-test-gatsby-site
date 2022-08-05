@@ -10,6 +10,8 @@ collections:
     label: "Blog"
     folder: "blog"
     create: true
+    extension: mdx
+    format: frontmatter
     slug: "{{slug}}"
     media_folder: ""
     public_folder: ""
@@ -19,5 +21,16 @@ collections:
     fields:
       - { label: "Title", name: "title", widget: "string" }
       - { label: "Publish Date", name: "date", widget: "datetime" }
-      - { label: "Description", name: "description", widget: "string" }
+      - { label: "Image", name: "hero_image", widget: "string" }
+      - { label: "Image description", name: "hero_image_alt", widget: "string" }
+      - {
+          label: "Text under image",
+          name: "hero_image_credit_text",
+          widget: "string",
+        }
+      - {
+          label: "Link image from",
+          name: "hero_image_credit_link",
+          widget: "string",
+        }
       - { label: "Body", name: "body", widget: "markdown" }
