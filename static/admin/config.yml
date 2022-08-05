@@ -8,9 +8,9 @@ public_folder: /img
 collections:
   - name: "blog"
     label: "Blog"
-    folder: "content/blog"
+    folder: "blog"
     create: true
-    slug: "index"
+    slug: "{{slug}}"
     media_folder: ""
     public_folder: ""
     path: "{{title}}/index"
