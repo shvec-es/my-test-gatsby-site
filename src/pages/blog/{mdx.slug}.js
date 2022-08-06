@@ -6,6 +6,7 @@ import Layout from "../../components/layout";
 
 const BlogPost = ({ data }) => {
   const image = getImage(data.mdx.frontmatter.hero_image);
+  console.log(image);
 
   return (
     <Layout pageTitle={data.mdx.frontmatter.title}>
