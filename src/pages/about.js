@@ -9,12 +9,19 @@ const AboutPage = () => {
   return (
     <Layout pageTitle="About Me">
       <p>Enter your name and phone number and we'll call you in 10 minutes!</p>
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form
+        name="contact"
+        method="post"
+        data-netlify="true"
+        onSubmit={handleSubmit(onSubmit)}
+      >
         <input
+          name="name"
           {...register("name", { required: true, maxLength: 20 })}
           className="w-full mb-1 border "
         />
         <input
+          name="phone"
           type="tel"
           {...register("phone", { required: true })}
           className="w-full mb-1 border "
