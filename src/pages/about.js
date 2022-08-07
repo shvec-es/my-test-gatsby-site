@@ -1,10 +1,29 @@
 import * as React from "react";
 import { useForm } from "react-hook-form";
+import { navigate } from "gatsby";
 import Layout from "../components/layout";
 
 const AboutPage = () => {
   const { register, handleSubmit } = useForm();
-  const onSubmit = (data) => console.log(data);
+  function encode(data) {
+    return Object.keys(data)
+      .map(
+        (key) => encodeURIComponent(key) + "=" + encodeURIComponent(data[key])
+      )
+      .join("&");
+  }
+  const onSubmit = (data) => {
+    fetch("/", {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: encode({
+        "form-name": "contact",
+        ...data,
+      }),
+    })
+      .then(() => navigate("/thank-you/"))
+      .catch((error) => alert(error));
+  };
 
   return (
     <Layout pageTitle="About Me">
@@ -28,7 +47,7 @@ const AboutPage = () => {
         />
         <input
           type="submit"
-          className="bg-indigo-500 rounded-md block mx-auto py-2 ps-14 w-32"
+          className="button bg-indigo-500 rounded-md block mx-auto py-2 ps-14 w-32"
         />
       </form>
     </Layout>
