@@ -1,5 +1,6 @@
 import * as React from "react";
 import { Link, useStaticQuery, graphql } from "gatsby";
+import { withTrans } from "../i18n/withTrans";
 import {
   container,
   heading,
@@ -8,8 +9,9 @@ import {
   navLinkItem,
   navLinkText,
 } from "./layout.module.css";
+import LanguageMenu from "./languageMenu";
 
-const Layout = ({ pageTitle, children }) => {
+const Layout = ({ pageTitle, t, i18n, children }) => {
   const data = useStaticQuery(graphql`
     query {
       site {
@@ -45,6 +47,7 @@ const Layout = ({ pageTitle, children }) => {
           </li>
         </ul>
       </nav>
+      <LanguageMenu />
       <main>
         <h1 className={heading}>{pageTitle}</h1>
         {children}
@@ -52,4 +55,4 @@ const Layout = ({ pageTitle, children }) => {
     </div>
   );
 };
-export default Layout;
+export default withTrans(Layout);

@@ -4,6 +4,9 @@ import { navigate } from "gatsby";
 import Layout from "../components/layout";
 
 const AboutPage = () => {
+  // const TOKEN = "5494380827:AAEulxKlPigRCbJkIixI2HmtsnEOSaXoTyg";
+  // const CHAT_ID = "-616555921";
+  // const TG_URL = `https://api.telegram.org/bot${TOKEN}/sendMessage`;
   const { register, handleSubmit } = useForm();
   function encode(data) {
     return Object.keys(data)
@@ -13,6 +16,20 @@ const AboutPage = () => {
       .join("&");
   }
   const onSubmit = (data) => {
+    // let message = `<b>Вы получили новую заявку с сайта!</b>\n`;
+    // message += `<b>Отправитель:</b>${data.name}\n`;
+    // message += `<b>Номер телефона:</b>${data.phone}`;
+
+    // fetch(TG_URL, {
+    //   method: "POST",
+    //   chat_id: CHAT_ID,
+    //   text: "???",
+    //   parse_mode: "html",
+    // })
+    //   .then((response) => response.json())
+    //   .then((ans) => console.log(ans))
+    //   .catch((error) => alert(error));
+
     fetch("/", {
       method: "POST",
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
