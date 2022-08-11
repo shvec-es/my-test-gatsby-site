@@ -5,6 +5,19 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import axios from "axios";
 
+// import "react-phone-number-input/style.css";
+// import PhoneInputWithCountry from "react-phone-number-input/react-hook-form-core";
+// import { isValidPhoneNumber } from "react-phone-number-input";
+// import metadata from "libphonenumber-js/metadata.full.json";
+
+import PhoneInput from "react-phone-input-2";
+import "react-phone-input-2/lib/style.css";
+// import validator from "validator";
+import {
+  isValidPhoneNumber,
+  validatePhoneNumberLength,
+} from "libphonenumber-js/max";
+
 const phoneRegEx = /^[+]*[(]{0,1}[0-9]{1,3}[)]{0,1}[-\s./0-9]*$/g;
 
 const schema = yup
@@ -44,21 +57,6 @@ const AboutPage = () => {
   );
 
   const onSubmit = (data) => {
-    // let message = `
-    // *Request information:*
-    // Name: ${data.name}
-    // Email: ${data.email}
-    // Phone: ${data.phone}
-    // Checkbox: ${data.checkbox}
-
-    // *Additional information:*
-    // _TransactionID: 11111111_
-    // _BlockID: 22222222_
-    // _Form name: contact_
-    // [https://be-better.today]
-    // ------
-    // `;
-
     let message = `
     <b>Request information:</b>
     Name: ${data.name}
@@ -113,14 +111,55 @@ const AboutPage = () => {
           className="w-full mb-1 border "
         />
         <p>{errors.email?.message}</p>
-        <input
+        {/* <PhoneInputWithCountry
+          international
+          countryCallingCodeEditable={false}
           name="phone"
+          placeholder="Enter phone number"
+          control={control}
+          rules={{
+            required: true,
+            validate: (value) => isValidPhoneNumber(value),
+          }}
+          className="w-full mb-1 border "
+          metadata={metadata}
+          defaultCountry="US"
+          id="phone"
+        />
+        {errors["phone"] && <p className="error-message">Invalid Phone</p>} */}
+
+        {/* <input
+          name="phone"
+          ref={phoneInput}
           type="tel"
           {...register("phone")}
           placeholder="Enter your number"
           className="w-full mb-1 border "
+        /> */}
+        {/* <p>{errors.phone?.message}</p> */}
+
+        <PhoneInput
+          name="phone"
+          country={"ua"}
+          control={control}
+          placeholder="Enter phone number"
+          preferredCountries={["ua", "us"]}
+          isValid={(value, country) => {
+            if (isValidPhoneNumber(value, country.iso2.toUpperCase())) {
+              return true;
+            } else if (
+              validatePhoneNumberLength(value, country.iso2.toUpperCase())
+            ) {
+              return validatePhoneNumberLength(
+                value,
+                country.iso2.toUpperCase()
+              );
+            } else {
+              return "Invalid value";
+            }
+          }}
         />
-        <p>{errors.phone?.message}</p>
+
         <Controller
           name="checkbox"
           control={control}
