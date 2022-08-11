@@ -1,3 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.react-tel-input .invalid-number-message{
+    top: 100% !important;
+}

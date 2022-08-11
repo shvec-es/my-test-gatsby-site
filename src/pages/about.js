@@ -4,15 +4,9 @@ import Layout from "../components/layout";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import axios from "axios";
-
-// import "react-phone-number-input/style.css";
-// import PhoneInputWithCountry from "react-phone-number-input/react-hook-form-core";
-// import { isValidPhoneNumber } from "react-phone-number-input";
-// import metadata from "libphonenumber-js/metadata.full.json";
-
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
-// import validator from "validator";
+
 import {
   isValidPhoneNumber,
   validatePhoneNumberLength,
@@ -55,6 +49,7 @@ const AboutPage = () => {
     },
     { mode: "onBlur" }
   );
+  const [userLocation, setUserLocation] = React.useState("");
 
   const onSubmit = (data) => {
     let message = `
@@ -87,6 +82,16 @@ const AboutPage = () => {
       .catch((error) => alert(error));
   };
 
+  axios("https://api.db-ip.com/v2/free/self")
+    .then((data) => {
+      console.log(data);
+      const location = data.data.countryCode;
+      console.log(location);
+      setUserLocation(location.toLowerCase());
+    })
+    .catch((err) => console.log(err));
+
+  console.log(userLocation);
   return (
     <Layout pageTitle="About Me">
       <p>Enter your name and phone number and we'll call you in 10 minutes!</p>
@@ -140,7 +145,7 @@ const AboutPage = () => {
 
         <PhoneInput
           name="phone"
-          country={"ua"}
+          country={userLocation || "ua"}
           control={control}
           placeholder="Enter phone number"
           preferredCountries={["ua", "us"]}
